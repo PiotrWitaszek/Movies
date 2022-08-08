@@ -1,7 +1,5 @@
-from faker import Faker
-fake = Faker()
-import random
 
+list = []
 
 class Movies:
     def __init__(self, title, year, kind, views):
@@ -11,60 +9,43 @@ class Movies:
         self.views = views
 
     def play(self):
-        self.views = self.views + 1
-    
-    
-    def __str__(self):
-        return f'{self.title} "S"{"%02d" % self.season}"E"{"%02d" % self.episode}'
-
+        self.views = int(self.views) + 1
+  
     def __repr__(self):
         return f'{self.title} {self.year}'
 
-     
-    def get_kind():
-        return random.choice(['Documentary', 'Thriller', 'Sci-Fi', 'Horror', 'Action', 'Comedy', 'Drama'])
+Shawshank = Movies("Shawshank redemption", "1994", "Drama", "22")
+list.append(Shawshank)
+Godfather = Movies("The Godfather", "1972", "Drama", "24")
+list.append(Godfather)
+Psycho = Movies("Psycho", "1960", "Thriller", "19")
+list.append(Psycho)
+Requiem = Movies("Requiem for a dream", "2000", "Drama", "14")
+list.append(Requiem)
 
-    
-
-        
+           
 class Series(Movies):
         def __init__(self, season, episode, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.season = season
             self.episode = episode        
+        def __str__(self):
+          return f"{self.title} S{int(self.season):02d}E{int(self.episode):02d}"
 
-        def get_season():
-            return round(random.uniform(1, 10), 1)  
+Peaky = Series("1", "4", "Peaky Blinders", "2013", "Drama", "22")
+list.append(Peaky)
+Bad = Series("3", "9", "Breaking Bad", "2008", "Drama", "7")
+list.append(Bad)
 
-        def get_episode():
-            return round(random.uniform(1, 20), 1)  
+  
 
-def create_library():
-    print("Select the type:")
-    print("m - movies")
-    print("s - series")
-    print("x - exit programm")
-    while True:
-            choice = input("Enter choice (m/s/x):")#ma być tak czy jedynie wprowadzam liczbę a program losowo generuje zarówno filmy jak i seraiale?
+print(Godfather)
+print(Peaky)
+Peaky.play()
+print(Peaky.views)
+print(list)
 
-            if choice in ('m', 's',):
-                quantity = int(input("Enter number of titles:"))
-       
-            if choice == 'm':
-                library = []
-                for i in range(quantity):
-                    library.append(Movies(fake.word(), fake.year(), get_kind(), fake.number()))
-                print(library)
-            elif choice == 'b':
-                library = []
-                for i in range(quantity):
-                   #czy moge tu wrzucać funkcje typu get_kind()? library.append(Series(fake.word(), fake.year(), fake.word(), fake.number(), fake.number(), fake.number())) 
-                print(library)
-            elif choice == 'x':
-                exit()
-            else:
-                print("Invalid input")
-
-if __name__ == "__main__":  
-    create_library()
-
+#parę pytań:
+#funkcja search - czy ma to działać z inputem, czy jakoś w stylu find()?
+#get_movies i get_series - isinstance?
+# list.append zrobić jakimś for in range?
