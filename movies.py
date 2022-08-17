@@ -21,8 +21,8 @@ class Series(Movies):
 
 def search(list, value):
   for elem in list:
-    if elem == value:
-      return print(value)
+    if elem.title == value:
+      return print(elem)
   return False
   #tego za cholerę nie mogę ogarnąć, wpadłem na takie coś:
 #if "Psycho" in [data.title for data in list]:
@@ -30,13 +30,13 @@ def search(list, value):
       
 def get_series():
   for elem in list:
-    if type(elem) is (Series):
+    if type(elem) == Series:
       series_list.append(elem)
   return series_list
 
 def get_movies():
   for elem in list:
-    if type(elem) is (Movies):
+    if type(elem) == Movies:
        movies_list.append(elem)
   return movies_list
   
@@ -49,8 +49,9 @@ if __name__ == '__main__':
   list.append(Shawshank)
   Godfather = Movies("The_Godfather", "1972", "Drama", "24")
   list.append(Godfather)
-  Psycho = Movies("Psycho", "1960", "Thriller", "19")
-  list.append(Psycho)
+  psycho = Movies("Psycho", 1960, "Thriller", 19)
+  # czy o coś takiego chodzi?
+  list.append(psycho)
   Requiem = Movies("Requiem_for_a_dream", "2000", "Drama", "14")
   list.append(Requiem) 
   Peaky = Series("1", "4", "Peaky_Blinders", "2013", "Drama", "22")
@@ -58,7 +59,7 @@ if __name__ == '__main__':
   Bad = Series("3", "9", "Breaking_Bad", "2008", "Drama", "7")
   list.append(Bad)
 
-  search(list, Bad)
+  search(list, "Breaking_Bad")
   get_series()
   print(series_list)
   get_movies()
